@@ -83,12 +83,26 @@ car_mpg <- rbind(hybrid_car, electric_car, fuel_car) %>%
   mutate(avg_mpg = (city_mpg + highway_mpg)/2) %>% 
   group_by(car_type) %>% 
   summarize(avg_highway = mean(highway_mpg),
-            std_highway = sd(highway_mpg),
             avg_city = mean(city_mpg),
-            std_city = sd(city_mpg),
-            avg_both = mean(avg_mpg),
-            std_both = sd(avg_mpg))
+            avg_both = mean(avg_mpg))
 
-write_csv(car_mpg, "car_mpg.csv")
+
+car_GramPerMile <- car_mpg %>% 
+  mutate(carbon_GramPerGallon = 8900) %>% 
+  mutate(highway = carbon_GramPerGallon/avg_highway,
+         city = carbon_GramPerGallon/avg_city,
+         both = carbon_GramPerGallon/avg_both)
+
+non_car_GramPerMile <- data.frame(trans_type = c("walk", "bike", "bus"),
+                                  carbon_burden = c(10, 16, 8900/163.1))
+
+transport_gram_per_mile <- car_GramPerMile %>% 
+  select(car_type, both) %>% 
+  rename(trans_type = car_type,
+         carbon_burden = both) %>% 
+  rbind(non_car_GramPerMile)
+  
+
+write_csv(transport_gram_per_mile, "transport_gram_per_mile.csv")
 ```
 
