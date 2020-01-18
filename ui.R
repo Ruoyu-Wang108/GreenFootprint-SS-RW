@@ -9,6 +9,8 @@ diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %
   mutate(type = ifelse(type == "vegan", "Vegan", type)) %>% 
   filter(type %in% c("Vegan", "Vegetarian", "Omnivorous average"))
 
+transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.csv"))
+
 # Define UI for miles per gallon application
 # shinyUI(fluidPage(theme = "bootstrap.css",
 #                   titlePanel("here is my title"),
