@@ -26,11 +26,13 @@ diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %
 
 shinyUI(
   fluidPage(
-    theme = "sketchy.css",
+    theme = "flatly",
+    titlePanel("GREEN FOOTPRINT"),
+    
     navbarPage(
-      # theme = "sketchy.css",  # <--- To use a theme, uncomment this
-      "shinythemes",
-      tabPanel("Navbar",
+      theme = "flatly", id = "navbarColor02", # <--- To use a theme, uncomment this
+      "CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      tabPanel("CACULATOR",
                sidebarPanel(
                  fileInput("file", "File input:"),
                  textInput("txt", "Text input:", "general"),
@@ -42,27 +44,31 @@ shinyUI(
                  actionButton("action2", "Action button", class = "btn-primary")
                ),
                mainPanel(
-                 tabsetPanel(
-                   tabPanel("Tab 1",
-                            h4("Table"),
-                            tableOutput("table"),
-                            h4("Verbatim text output"),
-                            verbatimTextOutput("txtout"),
-                            h1("Header 1"),
-                            h2("Header 2"),
-                            h3("Header 3"),
-                            h4("Header 4"),
-                            h5("Header 5")
-                   ),
-                   tabPanel("Tab 2", "This panel is intentionally left blank"),
-                   tabPanel("Tab 3", "This panel is intentionally left blank")
-                 )
+                 "MY OUTPUTS WILL BE HERE",
                )
       ),
-      tabPanel("Navbar 2", "This panel is intentionally left blank"),
-      tabPanel("Navbar 3", "This panel is intentionally left blank")
+      tabPanel("DATA SOURCES", "This panel is intentionally left blank",
+               ),
+      tabPanel("TEAM", "This panel is intentionally left blank")
     )
   )
-  
-  
 )
+
+
+
+# tabsetPanel(
+#   tabPanel("Tab 1",
+#            h4("Table"),
+#            tableOutput("table"),
+#            h4("Verbatim text output"),
+#            verbatimTextOutput("txtout"),
+#            h1("Header 1"),
+#            h2("Header 2"),
+#            h3("Header 3"),
+#            h4("Header 4"),
+#            h5("Header 5")
+#   )
+# ,
+# tabPanel("Tab 2", "This panel is intentionally left blank"),
+# tabPanel("Tab 3", "This panel is intentionally left blank")
+#)
