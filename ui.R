@@ -36,15 +36,32 @@ shinyUI(
       "CALCULATE YOUR DAILY CARBON FOOTPRINT!",
       tabPanel("CACULATOR",
                sidebarPanel(
-                 fileInput("file", "File input:"),
-                 textInput("txt", "Text input:", "general"),
-                 sliderInput("slider", "Slider input:", 1, 100, 30),
-                 tags$h5("Deafult actionButton:"),
-                 actionButton("action", "Search"),
-                 
-                 tags$h5("actionButton with CSS class:"),
-                 actionButton("action2", "Action button", class = "btn-primary")
-               ),
+                 selectInput("trans_select_1", 
+                             label = "Transportation type 1 ", 
+                             choices = unique(transport_gram_per_mile$trans_type)
+                             ),
+                 numericInput("distance_1", 
+                              label = "Distance 1 (miles)", 
+                              value = 0
+                              ),
+                 selectInput("trans_select_2", 
+                             label = "Transportation type 2", 
+                             choices = unique(transport_gram_per_mile$trans_type)
+                 ),
+                 numericInput("distance_2", 
+                              label = "Distance 2 (miles)", 
+                              value = 0
+                 ),
+                 selectInput("trans_select_3", 
+                             label = "Transportation type 3", 
+                             choices = unique(transport_gram_per_mile$trans_type)
+                 ),
+                 numericInput("distance_3", 
+                              label = "Distance 3 (miles)", 
+                              value = 0
+                 )
+                ),
+               
                mainPanel(
                  "MY OUTPUTS WILL BE HERE",
                )
