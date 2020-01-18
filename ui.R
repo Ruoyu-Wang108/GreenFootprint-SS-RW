@@ -29,11 +29,10 @@ transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.
 shinyUI(
   fluidPage(
     theme = "flatly",
-    titlePanel("GREEN FOOTPRINT"),
-    
     navbarPage(
-      theme = "flatly", id = "navbarColor02", # <--- To use a theme, uncomment this
-      "CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      theme = "flatly", id = "navbarColor01", collapsable=F, # <--- To use a theme, uncomment this
+      "GREEN FOOTPRINT
+      --CALCULATE YOUR DAILY CARBON FOOTPRINT!",
       tabPanel("CACULATOR",
                sidebarPanel(
                  fileInput("file", "File input:"),
