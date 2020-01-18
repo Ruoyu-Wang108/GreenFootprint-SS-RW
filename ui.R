@@ -35,17 +35,22 @@ shinyUI(
       --CALCULATE YOUR DAILY CARBON FOOTPRINT!",
       tabPanel("CACULATOR",
                sidebarPanel(
-                 fileInput("file", "File input:"),
-                 textInput("txt", "Text input:", "general"),
-                 sliderInput("slider", "Slider input:", 1, 100, 30),
-                 tags$h5("Deafult actionButton:"),
-                 actionButton("action", "Search"),
-                 
-                 tags$h5("actionButton with CSS class:"),
-                 actionButton("action2", "Action button", class = "btn-primary")
-               ),
+                 selectInput(inputId = "diet_type",
+                             label = "Choose the type of your meal:",
+                             choices = unique(diet_carbon$type))),
+               #               
+               #   fileInput("file", "File input:"),
+               #   textInput("txt", "Text input:", "general"),
+               #   sliderInput("slider", "Slider input:", 1, 100, 30),
+               #   tags$h5("Deafult actionButton:"),
+               #   actionButton("action", "Search"),
+               #   
+               #   tags$h5("actionButton with CSS class:"),
+               #   actionButton("action2", "Action button", class = "btn-primary")
+               # ),
                mainPanel(
                  "MY OUTPUTS WILL BE HERE",
+                 tableOutput(outputId = "diet_table")
                )
       ),
       tabPanel("DATA SOURCES", "This panel is intentionally left blank",
