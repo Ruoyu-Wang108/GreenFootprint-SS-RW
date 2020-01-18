@@ -6,11 +6,11 @@ shinyUI(fluidPage(theme = "bootstrap.css",
                   pageWithSidebar(
                     
                     # Application title
-                    headerPanel("Miles Per Gallon"),
+                    headerPanel("Green Track"),
                     
-                    sidebarPanel(),
+                    sidebarPanel("Here's the input"),
                     
-                    mainPanel()
+                    mainPanel("here's the output")
                                   )
                   )
         )
