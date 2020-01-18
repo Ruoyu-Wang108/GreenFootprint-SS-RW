@@ -18,7 +18,7 @@ library(tidyverse)
 ```{r}
 vehicles <- read_csv("vehicles.csv")
 
-summary(vehicles$UCity)
+
 ```
 
 ```{r}
@@ -59,23 +59,21 @@ filter(vehicles, fuelType == "Regular Gas or Electricity") %>%
 hybrid_car <- vehicles %>% 
   filter(fuelType %in% c("Premium and Electricity", "Premium Gas or Electricity", "Regular Gas and Electricity", "Regular Gas or Electricity")) %>% 
   select(UCity:UHighwayA) %>% 
-  mutate(car_type = "hybrid",
+  mutate(car_type = "Hybrid car",
          city_mpg = (UCity+UCityA)/2,
          highway_mpg = (UHighway+UHighwayA)/2)
 
 electric_car <- vehicles %>% 
   filter(fuelType %in% c("Electricity")) %>% 
   select(UCity:UHighwayA) %>% 
-  mutate(car_type = "electric",
+  mutate(car_type = "Electric car",
          city_mpg = UCity,
          highway_mpg = UHighway)
-
-skimr::skim(electric_car)
 
 fuel_car <- vehicles %>% 
   filter(fuelType %in% c("Midgrade", "Premium", "Regular")) %>% 
   select(UCity:UHighwayA) %>% 
-  mutate(car_type = "fuel",
+  mutate(car_type = "Gasoline car",
          city_mpg = UCity,
          highway_mpg = UHighway)
 
@@ -93,7 +91,7 @@ car_GramPerMile <- car_mpg %>%
          city = carbon_GramPerGallon/avg_city,
          both = carbon_GramPerGallon/avg_both)
 
-non_car_GramPerMile <- data.frame(trans_type = c("walk", "bike", "bus"),
+non_car_GramPerMile <- data.frame(trans_type = c("Walk", "Bike", "Bus"),
                                   carbon_burden = c(10, 16, 8900/163.1))
 
 transport_gram_per_mile <- car_GramPerMile %>% 
@@ -101,6 +99,9 @@ transport_gram_per_mile <- car_GramPerMile %>%
   rename(trans_type = car_type,
          carbon_burden = both) %>% 
   rbind(non_car_GramPerMile)
+
+transport_gram_per_mile <- rbind(data.frame(trans_type = "No transportation", carbon_burden = 0),
+                                 transport_gram_per_mile)
   
 
 write_csv(transport_gram_per_mile, "transport_gram_per_mile.csv")
