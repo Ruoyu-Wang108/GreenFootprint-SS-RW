@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Data Source: [Fuel Economy](https://www.fueleconomy.gov/feg/download.shtml)
+
 ```{r}
 library(tidyverse)
 ```
@@ -21,25 +23,72 @@ summary(vehicles$UCity)
 
 ```{r}
 skimr::skim(vehicles)
-
 unique(vehicles$fuelType)
 count(vehicles, fuelType)
-
 ```
 
 ```{r}
 vehicles_fuelType <- vehicles %>% 
   select(fuelType, fuelType1, fuelType2) %>% 
   filter(fuelType == "Gasoline or E85") 
-
 count(vehicles, fuelType, fuelType1, fuelType2)
+```
+
+```{r}
 count(vehicles, fuelType2)
 
-filter(vehicles, UCityA != 0) %>% 
+filter(vehicles, UCityA == 0) %>% 
   select(fuelType, fuelType1, fuelType2, UCity:UHighwayA) %>% 
-  
+  count(fuelType)
+
+filter(vehicles, fuelType == "Gasoline or natural gas") %>% 
+  select(fuelType, fuelType1, fuelType2, UCity:UHighwayA)
+
+filter(vehicles, fuelType == "Gasoline or propane") %>% 
+  select(fuelType, fuelType1, fuelType2, UCity:UHighwayA)
+
+filter(vehicles, fuelType == "Gasoline or E85") %>% 
+  select(fuelType, fuelType1, fuelType2, UCity:UHighwayA)
+
+filter(vehicles, fuelType == "Regular Gas or Electricity") %>% 
+  select(fuelType, fuelType1, fuelType2, UCity:UHighwayA)
+```
 
 
-count(vehicles, mpgData)
+```{r}
+hybrid_car <- vehicles %>% 
+  filter(fuelType %in% c("Premium and Electricity", "Premium Gas or Electricity", "Regular Gas and Electricity", "Regular Gas or Electricity")) %>% 
+  select(UCity:UHighwayA) %>% 
+  mutate(car_type = "hybrid",
+         city_mpg = (UCity+UCityA)/2,
+         highway_mpg = (UHighway+UHighwayA)/2)
+
+electric_car <- vehicles %>% 
+  filter(fuelType %in% c("Electricity")) %>% 
+  select(UCity:UHighwayA) %>% 
+  mutate(car_type = "electric",
+         city_mpg = UCity,
+         highway_mpg = UHighway)
+
+skimr::skim(electric_car)
+
+fuel_car <- vehicles %>% 
+  filter(fuelType %in% c("Midgrade", "Premium", "Regular")) %>% 
+  select(UCity:UHighwayA) %>% 
+  mutate(car_type = "fuel",
+         city_mpg = UCity,
+         highway_mpg = UHighway)
+
+car_mpg <- rbind(hybrid_car, electric_car, fuel_car) %>% 
+  mutate(avg_mpg = (city_mpg + highway_mpg)/2) %>% 
+  group_by(car_type) %>% 
+  summarize(avg_highway = mean(highway_mpg),
+            std_highway = sd(highway_mpg),
+            avg_city = mean(city_mpg),
+            std_city = sd(city_mpg),
+            avg_both = mean(avg_mpg),
+            std_both = sd(avg_mpg))
+
+write_csv(car_mpg, "car_mpg.csv")
 ```
 
