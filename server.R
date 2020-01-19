@@ -38,7 +38,7 @@ shinyServer <- function(input, output) {
   
   output$trans_carbon_total <- renderText({
     
-    sum(transport_carbon()$"Carbon emission (gram)")
+    sum(transport_carbon()$"Carbon emission (kg)")
     
   })
  
@@ -62,7 +62,7 @@ shinyServer <- function(input, output) {
       dplyr::full_join(diet_input(), by = "type") %>%
       mutate("Meal" = meal,
              "Type" = type,
-             "Carbon emission (kilogram)" = per_meal_kg) %>% 
+             "Carbon emission (kg)" = per_meal_kg) %>% 
       select(-(type:meal))
   })
   
@@ -73,14 +73,14 @@ shinyServer <- function(input, output) {
   
   output$diet_carbon_total <- renderText({
     
-    sum(diet_emission()$"Carbon emission (kilogram)", na.rm = TRUE)
+    sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE)
     
   })
 
 # Total emission in global setting
   
   total_co2 <- reactive({
-    (sum(transport_carbon()$"Carbon emission (gram)")+ sum(diet_emission()$"Carbon emission (kilogram)", na.rm = TRUE))/0.88 
+    sum(transport_carbon()$"Carbon emission (kg)")/0.33 + sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE) 
   })
 
   

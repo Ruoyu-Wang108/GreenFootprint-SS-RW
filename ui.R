@@ -80,7 +80,7 @@ shinyUI(
                             mainPanel(
                               p("Transportation carbon emission:"),
                               tableOutput(outputId = "trans_carbon"),
-                              p("Your total amount of carbon produced (grams) through transport is:"),
+                              p("Your total amount of carbon produced (kilograms) through transport is:"),
                               textOutput(outputId = "trans_carbon_total")
                             )
                           ),
