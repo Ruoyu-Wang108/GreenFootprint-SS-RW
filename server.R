@@ -106,8 +106,7 @@ shinyServer <- function(input, output) {
                show.legend = FALSE) +
       theme_minimal() +
       labs(x = "",
-           y = "Daily carbon emission (kg)",
-           fill = "") +
+           y = "Daily carbon emission (kg)") +
       theme(panel.grid.major.x = element_blank(),
             panel.grid.minor.x = element_blank())
     
@@ -123,11 +122,11 @@ shinyServer <- function(input, output) {
   
   output$global_co2 <- renderPlot({
     
-    ggplot(data = global_co2_2014, aes(x = daily_2014)) +
+    ggplot(data = global_co2, aes(x = daily_2014)) +
       geom_histogram(aes(y=..density..), bins = 50, fill = "white") + 
       geom_vline(xintercept = total_co2(), color = "green") +
       scale_y_continuous(limits = c(0, 0.02)) +
-      stat_function(fun = dnorm, args = list(mean = mean(global_co2_2014$daily_2014), sd = sd(global_co2_2014$daily_2014))) +
+      stat_function(fun = dnorm, args = list(mean = mean(global_co2$daily_2014), sd = sd(global_co2$daily_2014))) +
       theme_minimal()+
       theme(panel.grid = element_blank(),
             axis.text.y = element_blank()) +

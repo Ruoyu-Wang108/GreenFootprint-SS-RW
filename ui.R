@@ -102,7 +102,7 @@ shinyUI(
                "This panel is intentionally left blank"),
       
       tabPanel("Team", 
-               "This panel is intentionally left blank")
+               "The Ruoyu Wang and Shuhan Song. ")
     )
   )
 )
