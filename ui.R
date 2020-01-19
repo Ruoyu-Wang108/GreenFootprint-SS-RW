@@ -64,6 +64,10 @@ shinyUI(
                
                mainPanel(
                  "MY OUTPUTS WILL BE HERE",
+                 p("Transportation carbon emission:"),
+                 tableOutput(outputId = "trans_carbon"),
+                 p("Your total amount of carbon produced (grams) through transport is:"),
+                 textOutput(outputId = "trans_carbon_total")
                )
       ),
       tabPanel("DATA SOURCES", "This panel is intentionally left blank",
