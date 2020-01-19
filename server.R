@@ -223,19 +223,26 @@ shinyServer <- function(input, output) {
   
   output$our_team <- renderText({
     
-    "We are students in the Bren School of Environmental Science and Management 
-              at the University of California, Santa Barbara. We both believe that 
-               spreading sustainable lifestyles is one of the most important things we need to do in the 21st century. 
-               We want to raise people's awareness about their environmental impacts generated through the most basic daily activities.
-               This carbon accounting project for individual users is just a beginning."
+    "We are students from the Bren School of Environmental Science and Management, University of California, Santa Barbara. 
+    In our opinion, sharing the sustainable lifestyles is one of the most wonderful things to do in the 21st century. 
+               We want to raise people's awareness that their behaviors matter and might already generate environmental impacts.
+               Hopefully, this carbon accounting project for individual users is just a beginning of our actions."
     
   })
   
   output$thank_note <- renderText({
     
-    "Thank you!!!"
+    "We appreciate your attention to our project and the Earth. Thank you!"
     
   })
+
+  output$art_credit <- renderText({
+    
+    "© Allison Horst, Bren logo artwork. She is a Bren professor. Her design features environmental icons such as a majestic blue whale, wind power turbines, and trees. For more details, click: "
+    
+  })
+  
+  
 
 }
 

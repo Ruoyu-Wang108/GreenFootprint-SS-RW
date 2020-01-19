@@ -129,8 +129,10 @@ shinyUI(
                mainPanel(
                  h2("Shuhan Song and Ruoyu Wang"),
                  textOutput("our_team"),
-                 span(textOutput("thank_note"), style = "font-size:40px; color:darkgreen")),
-                 img(src="BrenArtLogo.jpg", height = 350, width = 350)
+                 span(textOutput("thank_note"), style = "font-size:30px; color:darkgreen")),
+                 img(src="BrenArtLogo.jpg", height = 400, width = 400),
+               textOutput("art_credit"),
+               a("www.brengarb.org/products/bren-logo-mural-signed-by-artist-alison-horst")
                )
     )
   )
