@@ -127,10 +127,10 @@ shinyServer <- function(input, output) {
       geom_vline(xintercept = total_co2(), color = "green") +
       annotate("text",
                x = total_co2(), 
-                    y = .8, 
+                    y = 0.1, 
                     label = "Here's your today's carbon emission",
                     color = "grey45",
-                    fontface =2)+
+                    font = 5)+
       scale_y_continuous(limits = c(0, 0.02)) +
       stat_function(fun = dnorm, args = list(mean = mean(global_co2$daily_2014), sd = sd(global_co2$daily_2014))) +
       theme_minimal()+
