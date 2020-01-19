@@ -132,13 +132,12 @@ shinyUI(
                  textOutput("worldbank_pop_link"),
                  textOutput("scale"),
                  textOutput("other_link")
-                 
                )
                ),
       
       tabPanel("Team", 
                mainPanel(
-                 h2("Shuhan Song and Ruoyu Wang"),
+                 h2("Shuhan Song 宋舒涵 and Ruoyu Wang 王若雨"),
                  textOutput("our_team"),
                  span(textOutput("thank_note"), style = "font-size:30px; color:darkgreen")),
                  img(src="BrenArtLogo.jpg", height = 400, width = 400),
