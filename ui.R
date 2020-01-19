@@ -47,7 +47,7 @@ shinyUI(
                             tableOutput(outputId = "diet_table"),
                             
                             p("Your total amount of carbon produced (kilograms) through daily diet is:"),
-                            textOutput(outputId = "diet_carbon_total")
+                            span(textOutput(outputId = "diet_carbon_total"), style = "font-size:30px")
                             ),
                    
                    tabPanel("Transportation", 
@@ -86,36 +86,51 @@ shinyUI(
                             mainPanel(
                               tableOutput(outputId = "trans_carbon"),
                               p("Your total amount of carbon produced (kilograms) through transport is:"),
-                              textOutput(outputId = "trans_carbon_total")
-                              
+                              span(textOutput(outputId = "trans_carbon_total"), style = "font-size:30px")
                             )
                           ),
                   
                    tabPanel("Summary", 
                             
                             mainPanel(
-                              p("You emitted this amount of carbon dioxide (kilograms) today, CONGRATS!"),
-                              textOutput("carbon_total"),
-                              p("YOUR Diet vs. Transportation:"),
-                              plotOutput("diet_trans")
-                            
-                              ),
-                            
-                            mainPanel(
-                              p("Here is your carbon emission in GLOBAL scale:"),
-                              plotOutput(outputId = "global_co2")
+                              p("You emitted this amount of CO2 (kilograms) today, CONGRATS!"),
+                              span(textOutput("carbon_total"), style = "font-size:30px"),
+                              h3("YOUR Diet vs. Transportation:"),
+                              plotOutput("diet_trans"),
+                              h3("Here is your carbon emission in GLOBAL scale:"),
+                              plotOutput(outputId = "global_co2"),
+                              h3("How could you contribute?"),
+                              textOutput("suggestion")
                             )
-                            )
+                  )
                )
-                  
-                
       ),
       
       tabPanel("Data Sources", 
-               "This panel is intentionally left blank"),
+               mainPanel(
+                 textOutput("source_intro"),
+                 h3("CO2 emission data for different types of diet"),
+                 tableOutput("diet_original_data"),
+                 h3("CO2 emission data for different types of transportation"),
+                 tableOutput("transport_original_data"),
+                 h4("Source links"),
+                 textOutput("diet_link"),
+                 textOutput("car_link"),
+                 textOutput("not_car_link"),
+                 textOutput("bus_link"),
+                 textOutput("worldbank_link"),
+                 textOutput("worldbank_pop_link"),
+                 textOutput("scale")
+                 
+               )
+               ),
       
       tabPanel("Team", 
-               "The Ruoyu Wang and Shuhan Song. ")
+               mainPanel(
+                 h2("Shuhan Song and Ruoyu Wang"),
+                 textOutput("our_team"),
+                 span(textOutput("thank_note"), style = "font-size:40px; color:darkgreen")
+               ))
     )
   )
 )
