@@ -1,8 +1,6 @@
 library(shiny)
 library(tidyverse)
-
 library(kableExtra)
-
 library(shinythemes)
 library(here)
 library(janitor)
@@ -45,7 +43,7 @@ shinyServer <- function(input, output) {
   
   
   
-  
+# Diet interact table  
   diet_input <- reactive({
     
     data.frame(
