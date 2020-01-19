@@ -89,6 +89,13 @@ shinyServer <- function(input, output) {
     
   })
   
+
+  output$carbon_total <- renderText({
+    
+    round(sum(diet_trans_data()$carbon), 2)
+    
+  })
+  
   
   output$diet_trans <- renderPlot({
     
@@ -119,6 +126,7 @@ shinyServer <- function(input, output) {
     ggplot(data = global_co2_2014, aes(x = daily_2014)) +
       geom_histogram(aes(y=..density..), bins = 50, fill = "white") + 
       geom_vline(xintercept = total_co2(), color = "green") +
+      scale_y_continuous(limits = c(0, 0.02)) +
       stat_function(fun = dnorm, args = list(mean = mean(global_co2_2014$daily_2014), sd = sd(global_co2_2014$daily_2014))) +
       theme_minimal()+
       theme(panel.grid = element_blank(),
