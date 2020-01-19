@@ -11,6 +11,79 @@ diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %
 
 transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.csv"))
 
+
+
+shinyUI(
+  fluidPage(
+    theme = "flatly",
+    navbarPage(
+      "GREEN FOOTPRINT--CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      
+      tabPanel("CACULATOR",
+               mainPanel(
+                 tabsetPanel(
+                   tabPanel("Diet",
+                            sidebarPanel(
+                              selectInput(inputId = "diet_type",
+                                          label = "Choose the type of your meal:",
+                                          choices = unique(diet_carbon$type)
+                              )
+                            ),
+                            tableOutput(outputId = "diet_table")
+                            ),
+                   
+                   tabPanel("Transportation", 
+                            sidebarPanel(
+                              selectInput("trans_select_1", 
+                                          label = "Transportation type 1 ", 
+                                          choices = unique(transport_gram_per_mile$trans_type)
+                              ),
+                              numericInput("distance_1", 
+                                           label = "Distance 1 (miles)", 
+                                           value = 0
+                              ),
+                              selectInput("trans_select_2", 
+                                          label = "Transportation type 2", 
+                                          choices = unique(transport_gram_per_mile$trans_type)
+                              ),
+                              numericInput("distance_2", 
+                                           label = "Distance 2 (miles)", 
+                                           value = 0
+                              ),
+                              selectInput("trans_select_3", 
+                                          label = "Transportation type 3", 
+                                          choices = unique(transport_gram_per_mile$trans_type)
+                              ),
+                              numericInput("distance_3", 
+                                           label = "Distance 3 (miles)", 
+                                           value = 0
+                              )
+                            ),
+                            
+                            mainPanel(
+                              "MY OUTPUTS WILL BE HERE",
+                              p("Transportation carbon emission:"),
+                              tableOutput(outputId = "trans_carbon"),
+                              p("Your total amount of carbon produced (grams) through transport is:"),
+                              textOutput(outputId = "trans_carbon_total")
+                            )),
+                   
+                   tabPanel("Summary", 
+                            "This panel is intentionally left blank")
+                  )
+                )
+      ),
+      
+      tabPanel("DATA SOURCES", 
+               "This panel is intentionally left blank"),
+      
+      tabPanel("TEAM", 
+               "This panel is intentionally left blank")
+    )
+  )
+)
+
+
 # Define UI for miles per gallon application
 # shinyUI(fluidPage(theme = "bootstrap.css",
 #                   titlePanel("here is my title"),
@@ -26,57 +99,17 @@ transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.
 #                                 )
 #         ))
 
-shinyUI(
-  fluidPage(
-    theme = "flatly",
-    titlePanel("GREEN FOOTPRINT"),
-    
-    navbarPage(
-      theme = "flatly", id = "navbarColor02", # <--- To use a theme, uncomment this
-      "CALCULATE YOUR DAILY CARBON FOOTPRINT!",
-      tabPanel("CACULATOR",
-               sidebarPanel(
-                 selectInput("trans_select_1", 
-                             label = "Transportation type 1 ", 
-                             choices = unique(transport_gram_per_mile$trans_type)
-                             ),
-                 numericInput("distance_1", 
-                              label = "Distance 1 (miles)", 
-                              value = 0
-                              ),
-                 selectInput("trans_select_2", 
-                             label = "Transportation type 2", 
-                             choices = unique(transport_gram_per_mile$trans_type)
-                 ),
-                 numericInput("distance_2", 
-                              label = "Distance 2 (miles)", 
-                              value = 0
-                 ),
-                 selectInput("trans_select_3", 
-                             label = "Transportation type 3", 
-                             choices = unique(transport_gram_per_mile$trans_type)
-                 ),
-                 numericInput("distance_3", 
-                              label = "Distance 3 (miles)", 
-                              value = 0
-                 )
-                ),
-               
-               mainPanel(
-                 "MY OUTPUTS WILL BE HERE",
-                 p("Transportation carbon emission:"),
-                 tableOutput(outputId = "trans_carbon"),
-                 p("Your total amount of carbon produced (grams) through transport is:"),
-                 textOutput(outputId = "trans_carbon_total")
-               )
-      ),
-      tabPanel("DATA SOURCES", "This panel is intentionally left blank",
-               ),
-      tabPanel("TEAM", "This panel is intentionally left blank")
-    )
-  )
-)
 
+#               
+#   fileInput("file", "File input:"),
+#   textInput("txt", "Text input:", "general"),
+#   sliderInput("slider", "Slider input:", 1, 100, 30),
+#   tags$h5("Deafult actionButton:"),
+#   actionButton("action", "Search"),
+#   
+#   tags$h5("actionButton with CSS class:"),
+#   actionButton("action2", "Action button", class = "btn-primary")
+# ),
 
 
 # tabsetPanel(
