@@ -16,11 +16,12 @@ transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.
 
 shinyUI(
   fluidPage(
-    theme = "flatly",
+    theme = shinytheme("flatly"),
+    titlePanel("GREEN FOOTPRINT"),
     navbarPage(
-      "GREEN FOOTPRINT--CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      "Calculate Your Daily Carbon Footprint!",
       
-      tabPanel("CACULATOR",
+      tabPanel("Calculator",
                mainPanel(
                  tabsetPanel(
                    tabPanel("Diet",
@@ -87,10 +88,10 @@ shinyUI(
                 )
       ),
       
-      tabPanel("DATA SOURCES", 
+      tabPanel("Data Sources", 
                "This panel is intentionally left blank"),
       
-      tabPanel("TEAM", 
+      tabPanel("Team", 
                "This panel is intentionally left blank")
     )
   )
