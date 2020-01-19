@@ -1,4 +1,4 @@
-# greentrack-ss-rw
+# Green Footprint
 Quick access through: https://ruoyuwang.shinyapps.io/GreenFootprint/
 
 GreenFootprint is created under the inspiration to communicate the environmental effects caused by the most basic daily activities for everyone. This idea first came to both of us during our undergraduate study of global environmental change. Though an individual's carbon footprint is not as significant as that of the industry, there are ways we can choose to live a greener lifestyle which benefits our health and the environment.
