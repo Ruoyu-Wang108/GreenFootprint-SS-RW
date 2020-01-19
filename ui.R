@@ -102,7 +102,7 @@ shinyUI(
                               ),
                             
                             mainPanel(
-                              p("Put your CO2 emission in GLOBAL scale:"),
+                              p("Put your carbon emission in GLOBAL scale:"),
                               plotOutput(outputId = "global_co2")
                             )
                             )
