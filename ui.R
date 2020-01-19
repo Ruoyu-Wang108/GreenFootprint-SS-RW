@@ -13,7 +13,7 @@ shinyUI(
                mainPanel(
                  h3("What is Green Footprint?"),
                  textOutput("overall_intro"),
-                 h3("How to use Green Footprint!"),
+                 h3("How to use Green Footprint?"),
                  textOutput("overall_intro_spc")
                  ) 
                ),
@@ -83,7 +83,7 @@ shinyUI(
                             )
                           ),
                   
-                   tabPanel("Summary and next steps", 
+                   tabPanel("Summary and Next Steps", 
                             
                             mainPanel(
                               p("You emitted this amount of CO2 (kilograms) today, WHOA!"),
@@ -93,7 +93,12 @@ shinyUI(
                               h4("Your today's carbon emission in GLOBAL scale:"),
                               plotOutput(outputId = "global_co2"),
                               h4("Great job! But you can reduce more through the next steps:"),
-                              textOutput("suggestion")
+                              p("1. You can always reduce your carbon emission by choosing a vegan/vegetarian diet or consuming less beef or lamb."),
+                              p("2. You can walk, bike or taking public transit to work or school. "),
+                              p("3. If you need a car, you can save two thirds of your CO2 emission by choosing a hybrid over a regular gasoline car. "),
+                              p("4. An electric car can further reduce your emission by half."),
+                              p("If you are already optimizing your carbon emissions, CHEERS! You ARE the winner and leader!"),
+                              p("For more detailed information, please refer to the Data Sources section!")
                             )
                   )
                )

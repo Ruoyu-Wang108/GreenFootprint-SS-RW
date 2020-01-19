@@ -164,16 +164,15 @@ shinyServer <- function(input, output) {
   })
   
   
-  output$suggestion <- renderText({
-    
-    "You can always reduce your carbon emission by choosing a vegan/vegetarian diet or consuming less beef or lamb.
-    You can walk, bike or taking public transit to work or school. 
-    If you need a car, you can save two thirds of your CO2 emission by choosing a hybrid over a regular gasoline car. 
-    An electric car can further reduce your emission by half.
-    If you are already optimizing your carbon emissions, CHEERS! You ARE the winner and leader!
-    For more detailed information, please refer to the Data Sources section!"
-    
-  })
+  # output$suggestion <- renderText({
+  #   
+  #   "p(1. You can always reduce your carbon emission by choosing a vegan/vegetarian diet or consuming less beef or lamb.),
+  #   p(2. You can walk, bike or taking public transit to work or school. ),
+  #   p(3. If you need a car, you can save two thirds of your CO2 emission by choosing a hybrid over a regular gasoline car. ),
+  #   p(4. An electric car can further reduce your emission by half.),
+  #   "
+  #   
+  # })
   
   
   # Data Source
@@ -249,7 +248,9 @@ shinyServer <- function(input, output) {
   
   output$our_team <- renderText({
     
-    "We are students from the Bren School of Environmental Science and Management, University of California, Santa Barbara. In our opinion, sharing the sustainable lifestyles is one of the most wonderful things to do in the 21st century. We want to raise people's awareness that their behaviors matter and might already generate environmental impacts. Hopefully, this carbon accounting project for individual users is just a beginning of our actions."
+    "We are students from the Bren School of Environmental Science and Management, University of California, Santa Barbara. All designs and codes are accomplished in RStudio 1.2.1335 with Shiny Web App. 
+    
+    In our opinion, sharing the sustainable lifestyles is one of the most wonderful things to do in the 21st century. We want to raise people's awareness that their behaviors matter and might already generate environmental impacts. Hopefully, this carbon accounting project for individual users is just a beginning of our actions."
     
   })
   
@@ -259,14 +260,11 @@ shinyServer <- function(input, output) {
     
   })
   
-  output$bren_img_credit <- renderText({
-    
-    "Note: Image credit to our amazing lecturer Allison Horst @ Bren!"
-  })
+
 
   output$art_credit <- renderText({
     
-    "© Allison Horst, Bren logo artwork. She is a Bren lecturer. Her design features environmental icons such as a majestic blue whale, wind power turbines, and trees. For more details, click: "
+    "© Allison Horst, Bren logo artwork. She is a lecturer at Bren. Her amazing design features environmental icons such as a majestic blue whale, wind power turbines, and trees. For more details, click: "
     
   })
   
