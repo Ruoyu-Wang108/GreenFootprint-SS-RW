@@ -125,7 +125,8 @@ shinyUI(
                  textOutput("bus_link"),
                  textOutput("worldbank_link"),
                  textOutput("worldbank_pop_link"),
-                 textOutput("scale")
+                 textOutput("scale"),
+                 textOutput("other_link")
                  
                )
                ),

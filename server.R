@@ -241,6 +241,10 @@ shinyServer <- function(input, output) {
     "https://sites.psu.edu/mfsblog/2015/02/04/how-much-co2-do-we-produce/"
   })
   
+  output$other_link <- renderText({
+    "https://www.eomega.org/article/3-biggest-ways-to-reduce-your-environmental-impact"
+  })
+  
   # Team
   
   output$our_team <- renderText({
