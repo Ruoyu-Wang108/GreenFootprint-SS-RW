@@ -99,7 +99,7 @@ shinyServer <- function(input, output) {
                show.legend = FALSE) +
       theme_minimal() +
       labs(x = "",
-           y = "Carbon emission (kg)",
+           y = "Daily carbon emission (kg)",
            fill = "") +
       theme(panel.grid.major.x = element_blank(),
             panel.grid.minor.x = element_blank())
