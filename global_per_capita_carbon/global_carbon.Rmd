@@ -19,16 +19,32 @@ library(janitor)
 global_co2 <- read_csv(here("global_per_capita_carbon", "API_EN.ATM.CO2E.PC_DS2_en_csv_v2_713061.csv"), skip = 4) %>% 
   clean_names()
 
+global_population <- read_csv(here("global_per_capita_carbon", "API_EN.ATM.CO2E.PC_DS2_en_csv_v2_713061.csv"), skip = 4) %>% 
+  clean_names() %>% 
+  select(country_code, x2014) %>% 
+  rename(population = x2014)
+global_population$population
+
+
 global_co2_2014 <- global_co2 %>% 
-  select(country_name, x2014) %>% 
+  left_join(global_population, by = "country_code") %>% 
+  select(country_name, x2014, population) %>% 
+  mutate(population = round(population*100)) %>% 
   drop_na() %>% 
-  mutate(daily_2014 = x2014/365*10^6)
+  uncount(population) %>% 
+  mutate(daily_2014 = x2014/365*10^3)
+
+write_csv(global_co2_2014, "global_co2_2014.csv")
 
 ggplot(data = global_co2_2014, aes(x = daily_2014)) +
-  geom_histogram(aes(y=..density..), bins = 50, fill = "white") + 
+  geom_histogram(aes(y=..density..), bins = 50, fill = "gray90") + 
   stat_function(fun = dnorm, args = list(mean = mean(global_co2_2014$daily_2014), sd = sd(global_co2_2014$daily_2014))) +
   theme_minimal()+
-  theme(panel.grid = element_blank()) +
+  theme(panel.grid = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = "Daily carbon emissions (kg)",
+       y = "Global frequency")
+  
   
 ```
-
+6

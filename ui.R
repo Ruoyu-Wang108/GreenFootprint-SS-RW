@@ -80,10 +80,14 @@ shinyUI(
                               tableOutput(outputId = "trans_carbon"),
                               p("Your total amount of carbon produced (grams) through transport is:"),
                               textOutput(outputId = "trans_carbon_total")
-                            )),
+                            )
+                          ),
                    
                    tabPanel("Summary", 
-                            "This panel is intentionally left blank")
+                            mainPanel(
+                              plotOutput(outputId = "global_co2")
+                            )
+                            )
                   )
                 )
       ),
