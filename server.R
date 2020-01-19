@@ -1,8 +1,6 @@
 library(shiny)
 library(tidyverse)
-
 library(kableExtra)
-
 library(shinythemes)
 library(here)
 library(janitor)
@@ -45,7 +43,7 @@ shinyServer <- function(input, output) {
   
   
   
-  
+# Diet interact table  
   diet_input <- reactive({
     
     data.frame(
@@ -69,6 +67,12 @@ shinyServer <- function(input, output) {
 
   output$diet_table <- renderTable({
     diet_emission()
+  })
+  
+  output$diet_carbon_total <- renderText({
+    
+    sum(diet_emission()$"Carbon emission (kilogram)", na.rm = TRUE)
+    
   })
 
 }

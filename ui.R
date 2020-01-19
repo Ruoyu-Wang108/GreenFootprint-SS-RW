@@ -7,7 +7,8 @@ library(janitor)
 diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %>% 
   janitor::clean_names() %>% 
   mutate(type = ifelse(type == "vegan", "Vegan", type),
-         type = ifelse(type == "No beef", "Chicken, pork, sea food", type)) 
+         type = ifelse(type == "No beef", "Chicken, pork, sea food", type),
+         type = ifelse(type == "Meat lover", "Beef, lamb", type)) 
 
 transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.csv"))
 
@@ -15,11 +16,12 @@ transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.
 
 shinyUI(
   fluidPage(
-    theme = "flatly",
+    theme = shinytheme("flatly"),
+    titlePanel("GREEN FOOTPRINT"),
     navbarPage(
-      "GREEN FOOTPRINT--CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      "Calculate Your Daily Carbon Footprint!",
       
-      tabPanel("CACULATOR",
+      tabPanel("Calculator",
                mainPanel(
                  tabsetPanel(
                    tabPanel("Diet",
@@ -35,9 +37,14 @@ shinyUI(
                               selectInput(inputId = "diet_type3",
                                               label = "Dinner type",
                                               choices = c("-- Choose --", unique(diet_carbon$type))
-                              )
+                              ),
+                              actionButton("action2", "Calculate", class = "btn-primary")
                             ),
-                            tableOutput(outputId = "diet_table")
+                            
+                            tableOutput(outputId = "diet_table"),
+                            
+                            p("Your total amount of carbon produced (kilograms) through daily diet is:"),
+                            textOutput(outputId = "diet_carbon_total")
                             ),
                    
                    tabPanel("Transportation", 
@@ -69,7 +76,6 @@ shinyUI(
                             ),
                             
                             mainPanel(
-                              "MY OUTPUTS WILL BE HERE",
                               p("Transportation carbon emission:"),
                               tableOutput(outputId = "trans_carbon"),
                               p("Your total amount of carbon produced (grams) through transport is:"),
@@ -82,10 +88,10 @@ shinyUI(
                 )
       ),
       
-      tabPanel("DATA SOURCES", 
+      tabPanel("Data Sources", 
                "This panel is intentionally left blank"),
       
-      tabPanel("TEAM", 
+      tabPanel("Team", 
                "This panel is intentionally left blank")
     )
   )
