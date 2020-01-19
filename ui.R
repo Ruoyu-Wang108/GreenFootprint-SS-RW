@@ -127,7 +127,6 @@ shinyUI(
                  textOutput("worldbank_pop_link"),
                  textOutput("scale"),
                  textOutput("other_link")
-                 
                )
                ),
       
