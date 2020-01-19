@@ -78,7 +78,6 @@ shinyUI(
                             ),
                             
                             mainPanel(
-                              p("Transportation carbon emission:"),
                               tableOutput(outputId = "trans_carbon"),
                               p("Your total amount of carbon produced (kilograms) through transport is:"),
                               textOutput(outputId = "trans_carbon_total")
@@ -87,6 +86,9 @@ shinyUI(
                    
                    tabPanel("Summary", 
                             mainPanel(
+                              p("Diet vs. Transportation:"),
+                              plotOutput("diet_trans"),
+                              p("Put your CO2 emission in GLOBAL scale:"),
                               plotOutput(outputId = "global_co2")
                             )
                             )

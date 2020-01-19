@@ -38,7 +38,7 @@ shinyServer <- function(input, output) {
   
   output$trans_carbon_total <- renderText({
     
-    sum(transport_carbon()$"Carbon emission (kg)")
+    round(sum(transport_carbon()$"Carbon emission (kg)"), 2)
     
   })
  
@@ -73,9 +73,34 @@ shinyServer <- function(input, output) {
   
   output$diet_carbon_total <- renderText({
     
-    sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE)
+    round(sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE), 2)
     
   })
+
+# Bar chart
+  
+  diet_trans_data <- reactive({
+    
+    data.frame(
+      type = c("Diet", "Transportation"),
+      carbon = c(round(sum(transport_carbon()$"Carbon emission (kg)"), 2), 
+                 round(sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE), 2))
+    )
+    
+  })
+  
+  
+  output$diet_trans <- renderPlot({
+    
+   ggplot(diet_trans_data(), 
+          aes(x = type, y = carbon, fill = type)) +
+      geom_col(alpha = 0.75, 
+               width = 0.5) +
+      theme_minimal() +
+      theme(axis.text.x=element_blank())
+    
+  })
+  
 
 # Total emission in global setting
   
@@ -87,7 +112,7 @@ shinyServer <- function(input, output) {
   output$global_co2 <- renderPlot({
     
     ggplot(data = global_co2_2014, aes(x = daily_2014)) +
-      geom_histogram(aes(y=..density..), bins = 50, fill = "gray90") + 
+      geom_histogram(aes(y=..density..), bins = 50, fill = "white") + 
       geom_vline(xintercept = total_co2(), color = "green") +
       stat_function(fun = dnorm, args = list(mean = mean(global_co2_2014$daily_2014), sd = sd(global_co2_2014$daily_2014))) +
       theme_minimal()+
