@@ -11,7 +11,7 @@ global_co2 <-  read_csv(here("data" ,"global_co2_2014.csv"))
 # Define server logic required to plot various variables against mpg
 shinyServer <- function(input, output) {
   
-  transport_input <- reactive({
+  transport_input <- eventReactive( input$action2,{
     
     data.frame(
       trans_type = c(input$trans_select_1, input$trans_select_2, input$trans_select_3),
@@ -20,7 +20,7 @@ shinyServer <- function(input, output) {
     
   })
   
-  transport_carbon <- reactive({
+  transport_carbon <- eventReactive( input$action2, {
       transport_gram_per_mile %>% 
       filter(trans_type %in% c(input$trans_select_1, input$trans_select_2, input$trans_select_3)) %>% 
       dplyr::full_join(transport_input(), by = "trans_type") %>%
@@ -56,7 +56,7 @@ shinyServer <- function(input, output) {
   })
 
   
-  diet_emission <- reactive({
+  diet_emission <- eventReactive( input$action1, {
     diet_carbon %>% 
       filter(type %in% c(input$diet_type1, input$diet_type2, input$diet_type3)) %>% 
       dplyr::full_join(diet_input(), by = "type") %>%

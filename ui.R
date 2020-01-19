@@ -19,7 +19,7 @@ shinyUI(
     theme = shinytheme("flatly"),
     titlePanel("GREEN FOOTPRINT"),
     navbarPage(
-      "Calculate Your Daily Carbon Footprint!",
+      "Calculate Your Daily Carbon Footprint since today!",
       
       tabPanel("Calculator",
                mainPanel(
@@ -38,7 +38,7 @@ shinyUI(
                                               label = "Dinner type",
                                               choices = c("-- Choose --", unique(diet_carbon$type))
                               ),
-                              actionButton("action2", "Calculate", class = "btn-primary")
+                              actionButton("action1", "Calculate", class = "btn-primary")
                             ),
                             
                             tableOutput(outputId = "diet_table"),
@@ -72,7 +72,9 @@ shinyUI(
                               numericInput("distance_3", 
                                            label = "Distance 3 (miles)", 
                                            value = 0
-                              )
+                              ),
+                              actionButton("action2", "Calculate", class = "btn-primary")
+                            
                             ),
                             
                             mainPanel(
