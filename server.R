@@ -258,6 +258,11 @@ shinyServer <- function(input, output) {
     "We appreciate your attention to our project and the Earth. Thank you!"
     
   })
+  
+  output$bren_img_credit <- renderText({
+    
+    "Note: Image credit to our amazing lecturer Allison Horst @ Bren!"
+  })
 
   output$art_credit <- renderText({
     

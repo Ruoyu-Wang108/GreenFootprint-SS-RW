@@ -139,6 +139,7 @@ shinyUI(
                  img(src="BrenArtLogo.jpg", height = 400, width = 400),
                textOutput("art_credit"),
                a("www.brengarb.org/products/bren-logo-mural-signed-by-artist-alison-horst")
+
                )
     )
   )
