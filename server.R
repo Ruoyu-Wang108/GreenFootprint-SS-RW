@@ -11,6 +11,28 @@ global_co2 <-  read_csv(here("data","global_co2_2014.csv"))
 # Define server logic required to plot various variables against mpg
 shinyServer <- function(input, output) {
   
+  # Introduction
+  
+  output$overall_intro <- renderText({
+    
+    "Green Footprint is your personal daily carbon (measured in CO2) emission calculator. Under the Calculator section, begin by choosing your diet types for breakfast,
+    lunch, and dinner. Then, enter up to three types of transportation you took and the distance you travelled with them respectively. Finally, you can 
+    see your total CO2 emission from diet and transportation for that day, an estimated position of your emission level in the world, and suggestions to live a greener day. "
+
+  })
+  
+  
+  output$overall_intro_spc <- renderText({
+  
+  "You can choose from vegan, vegetarian, chicken, pork, seefood, beef, lamb, or omnivorous average for types of diet. An 'omnivorous average' means 
+  you ate all types of meat for that meal. For transportation, you can choose from walking, biking, taking bus, and driving cars, where cars are divided
+  into three categories: gasoline, hybrid, and electric. For other types of public transportations, you may choose bus. If you want to
+  leave any choices blank, choose '--Choose--' for Diet and 'No transportation' for Transportation."
+  
+    
+  })
+    
+  # Transportation carbon emission
   transport_input <- eventReactive( input$action2,{
     
     data.frame(
@@ -217,6 +239,10 @@ shinyServer <- function(input, output) {
   
   output$scale <- renderText({
     "https://sites.psu.edu/mfsblog/2015/02/04/how-much-co2-do-we-produce/"
+  })
+  
+  output$other_link <- renderText({
+    "https://www.eomega.org/article/3-biggest-ways-to-reduce-your-environmental-impact"
   })
   
   # Team
