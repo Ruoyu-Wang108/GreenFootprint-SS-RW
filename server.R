@@ -83,13 +83,13 @@ shinyServer <- function(input, output) {
     
     data.frame(
       type = c("Diet", "Transportation"),
-      carbon = c(round(sum(transport_carbon()$"Carbon emission (kg)"), 2), 
-                 round(sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE), 2))
+      carbon = c(round(sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE), 2),
+                 round(sum(transport_carbon()$"Carbon emission (kg)"), 2))
     )
     
   })
   
-
+# Text summary
   output$carbon_total <- renderText({
     
     round(sum(diet_trans_data()$carbon), 2)
