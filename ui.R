@@ -11,6 +11,48 @@ diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %
 
 transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.csv"))
 
+
+
+shinyUI(
+  fluidPage(
+    theme = "flatly",
+    navbarPage(
+      "GREEN FOOTPRINT--CALCULATE YOUR DAILY CARBON FOOTPRINT!",
+      
+      tabPanel("CACULATOR",
+               sidebarPanel(
+                 selectInput(inputId = "diet_type",
+                             label = "Choose the type of your meal:",
+                             choices = unique(diet_carbon$type)
+                             )
+                 ),
+             
+               mainPanel(
+                 tabsetPanel(
+                   tabPanel("Diet",
+                            "MY OUTPUTS WILL BE HERE",
+                            tableOutput(outputId = "diet_table")
+                            ),
+                   
+                   tabPanel("Transportation", 
+                            "This panel is intentionally left blank"),
+                   
+                   tabPanel("Summary", 
+                            "This panel is intentionally left blank")
+                  )
+                )
+      ),
+      
+      tabPanel("DATA SOURCES", 
+               "This panel is intentionally left blank"),
+      
+      tabPanel("TEAM", 
+               "This panel is intentionally left blank")
+    )
+  )
+)
+
+
 # Define UI for miles per gallon application
 # shinyUI(fluidPage(theme = "bootstrap.css",
 #                   titlePanel("here is my title"),
@@ -26,41 +68,16 @@ transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.
 #                                 )
 #         ))
 
-shinyUI(
-  fluidPage(
-    theme = "flatly",
-    navbarPage(
-      theme = "flatly", id = "navbarColor01", collapsable=F, # <--- To use a theme, uncomment this
-      "GREEN FOOTPRINT
-      --CALCULATE YOUR DAILY CARBON FOOTPRINT!",
-      tabPanel("CACULATOR",
-               sidebarPanel(
-                 selectInput(inputId = "diet_type",
-                             label = "Choose the type of your meal:",
-                             choices = unique(diet_carbon$type))),
-               #               
-               #   fileInput("file", "File input:"),
-               #   textInput("txt", "Text input:", "general"),
-               #   sliderInput("slider", "Slider input:", 1, 100, 30),
-               #   tags$h5("Deafult actionButton:"),
-               #   actionButton("action", "Search"),
-               #   
-               #   tags$h5("actionButton with CSS class:"),
-               #   actionButton("action2", "Action button", class = "btn-primary")
-               # ),
-               mainPanel(
-                 "MY OUTPUTS WILL BE HERE",
-                 tableOutput(outputId = "diet_table")
-               )
-      ),
-      tabPanel("DATA SOURCES", "This panel is intentionally left blank",
-               ),
-      tabPanel("TEAM", "This panel is intentionally left blank")
-    )
-  )
-)
-
-
+#               
+#   fileInput("file", "File input:"),
+#   textInput("txt", "Text input:", "general"),
+#   sliderInput("slider", "Slider input:", 1, 100, 30),
+#   tags$h5("Deafult actionButton:"),
+#   actionButton("action", "Search"),
+#   
+#   tags$h5("actionButton with CSS class:"),
+#   actionButton("action2", "Action button", class = "btn-primary")
+# ),
 
 # tabsetPanel(
 #   tabPanel("Tab 1",
