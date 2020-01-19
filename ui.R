@@ -22,12 +22,17 @@ shinyUI(
     navbarPage(
       "Calculate Your Daily Carbon Footprint since today!",
       tabPanel("Introduction", 
+               sidebarPanel(img(src="carbon-footprint.png", height = 400, width = 250),
+                            h5(textOutput("carbon_credit")),
+                            a("www.imgbin.com/download-png/uPQk6ZLC")
+                            ),
                mainPanel(
                  h3("What is Green Footprint?"),
                  textOutput("overall_intro"),
                  h3("How to use Green Footprint!"),
                  textOutput("overall_intro_spc")
                  )
+               
                ),
       
       tabPanel("Calculator",

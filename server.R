@@ -6,12 +6,20 @@ library(here)
 library(janitor)
 
 
-global_co2 <-  read_csv(here("data","global_co2_2014.csv"))
+global_co2 <-  read_csv(here::here("data", "global_co2_2014.csv"))
 
 # Define server logic required to plot various variables against mpg
 shinyServer <- function(input, output) {
   
   # Introduction
+  
+  output$carbon_credit <- renderText({
+    
+    "This PNG image was uploaded on December 1 am by user: ses011. It can be used for Non-commercial Use. For more details, click: "
+    
+  })
+  
+  
   
   output$overall_intro <- renderText({
     
@@ -266,7 +274,7 @@ shinyServer <- function(input, output) {
 
   output$art_credit <- renderText({
     
-    "© Allison Horst, Bren logo artwork. She is a Bren professor. Her design features environmental icons such as a majestic blue whale, wind power turbines, and trees. For more details, click: "
+    "© Allison Horst, Bren logo artwork. She is a Bren lecturer. Her design features environmental icons such as a majestic blue whale, wind power turbines, and trees. For more details, click: "
     
   })
   
