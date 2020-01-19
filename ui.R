@@ -129,8 +129,9 @@ shinyUI(
                mainPanel(
                  h2("Shuhan Song and Ruoyu Wang"),
                  textOutput("our_team"),
-                 span(textOutput("thank_note"), style = "font-size:40px; color:darkgreen")
-               ))
+                 span(textOutput("thank_note"), style = "font-size:40px; color:darkgreen")),
+                 img(src="BrenArtLogo.jpg", height = 350, width = 350)
+               )
     )
   )
 )
