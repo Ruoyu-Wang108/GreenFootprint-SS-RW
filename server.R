@@ -1,15 +1,7 @@
-library(shiny)
-library(tidyverse)
-library(kableExtra)
-library(shinythemes)
-library(here)
-library(janitor)
-
-
-global_co2 <-  read_csv(here::here("data", "global_co2_2014.csv"))
-
 # Define server logic required to plot various variables against mpg
 shinyServer <- function(input, output) {
+
+  
   
   # Introduction
   
@@ -220,37 +212,37 @@ shinyServer <- function(input, output) {
   })
   
   output$diet_link <- renderText({
-    "http://shrinkthatfootprint.com/food-carbon-footprint-diet"
+    "www.shrinkthatfootprint.com/food-carbon-footprint-diet"
   })
   
   output$car_link <- renderText({
-    "https://www.fueleconomy.gov/feg/download.shtml"
+    "www.fueleconomy.gov/feg/download.shtml"
   })
   
   output$not_car_link <- renderText({
-    "https://www.ourstreetsmpls.org/does_bike_commuting_affect_your_carbon_footprint_and_how_much"
+    "www.ourstreetsmpls.org/does_bike_commuting_affect_your_carbon_footprint_and_how_much"
     
   })
   
   output$bus_link <- renderText({
-    "https://www.citylab.com/transportation/2012/11/can-we-please-stop-pretending-cars-are-greener-transit/3960/"
+    "www.citylab.com/transportation/2012/11/can-we-please-stop-pretending-cars-are-greener-transit/3960/"
   })
   
   
   output$worldbank_link <- renderText({
-    "https://data.worldbank.org/indicator/en.atm.CO2e.pc"
+    "www.data.worldbank.org/indicator/en.atm.CO2e.pc"
   })
   
   output$worldbank_pop_link <- renderText({
-    "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    "www.data.worldbank.org/indicator/SP.POP.TOTL"
   })
   
   output$scale <- renderText({
-    "https://sites.psu.edu/mfsblog/2015/02/04/how-much-co2-do-we-produce/"
+    "www.sites.psu.edu/mfsblog/2015/02/04/how-much-co2-do-we-produce/"
   })
   
   output$other_link <- renderText({
-    "https://www.eomega.org/article/3-biggest-ways-to-reduce-your-environmental-impact"
+    "www.eomega.org/article/3-biggest-ways-to-reduce-your-environmental-impact"
   })
   
   # Team
