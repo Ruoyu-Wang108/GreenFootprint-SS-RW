@@ -95,9 +95,14 @@ shinyServer <- function(input, output) {
    ggplot(diet_trans_data(), 
           aes(x = type, y = carbon, fill = type)) +
       geom_col(alpha = 0.75, 
-               width = 0.5) +
+               width = 0.5,
+               show.legend = FALSE) +
       theme_minimal() +
-      theme(axis.text.x=element_blank())
+      labs(x = "",
+           y = "Carbon emission (kg)",
+           fill = "") +
+      theme(panel.grid.major.x = element_blank(),
+            panel.grid.minor.x = element_blank())
     
   })
   

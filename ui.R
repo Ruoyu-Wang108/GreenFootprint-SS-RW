@@ -86,7 +86,7 @@ shinyUI(
                    
                    tabPanel("Summary", 
                             mainPanel(
-                              p("Diet vs. Transportation:"),
+                              p("YOUR Diet vs. Transportation:"),
                               plotOutput("diet_trans"),
                               p("Put your CO2 emission in GLOBAL scale:"),
                               plotOutput(outputId = "global_co2")
