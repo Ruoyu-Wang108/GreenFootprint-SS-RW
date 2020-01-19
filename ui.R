@@ -6,8 +6,8 @@ library(janitor)
 
 diet_carbon <- readr::read_csv(here::here("data", "diet_carbon_emission.csv")) %>% 
   janitor::clean_names() %>% 
-  mutate(type = ifelse(type == "vegan", "Vegan", type)) %>% 
-  filter(type %in% c("Vegan", "Vegetarian", "Omnivorous average"))
+  mutate(type = ifelse(type == "vegan", "Vegan", type),
+         type = ifelse(type == "No beef", "Chicken, pork, sea food", type)) 
 
 transport_gram_per_mile <- read_csv(here::here("data", "transport_gram_per_mile.csv"))
 
@@ -24,9 +24,17 @@ shinyUI(
                  tabsetPanel(
                    tabPanel("Diet",
                             sidebarPanel(
-                              selectInput(inputId = "diet_type",
-                                          label = "Choose the type of your meal:",
-                                          choices = unique(diet_carbon$type)
+                              selectInput(inputId = "diet_type1",
+                                          label = "Breakfast type",
+                                          choices = c("-- Choose --", unique(diet_carbon$type))
+                              ),
+                              selectInput(inputId = "diet_type2",
+                                            label = "Lunch type",
+                                            choices = c("-- Choose --", unique(diet_carbon$type))
+                              ),
+                              selectInput(inputId = "diet_type3",
+                                              label = "Dinner type",
+                                              choices = c("-- Choose --", unique(diet_carbon$type))
                               )
                             ),
                             tableOutput(outputId = "diet_table")

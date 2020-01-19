@@ -41,13 +41,32 @@ shinyServer <- function(input, output) {
     sum(transport_carbon()$"Carbon emission (gram)")
     
   })
+ 
+  
+  
+  
+  
+  diet_input <- reactive({
+    
+    data.frame(
+      meal = c("Breakfast", "Lunch", "Dinner"),
+      type = c(input$diet_type1, input$diet_type2, input$diet_type3)
+    )
+    
+  })
+
   
   diet_emission <- reactive({
-    diet_carbon %>%
-      filter(type == input$diet_type) %>%
-      select(type, per_meal_kg)
+    diet_carbon %>% 
+      filter(type %in% c(input$diet_type1, input$diet_type2, input$diet_type3)) %>% 
+      dplyr::full_join(diet_input(), by = "type") %>%
+      mutate("Meal" = meal,
+             "Type" = type,
+             "Carbon emission (kilogram)" = per_meal_kg) %>% 
+      select(-(type:meal))
   })
   
+
   output$diet_table <- renderTable({
     diet_emission()
   })
