@@ -6,7 +6,7 @@ library(here)
 library(janitor)
 
 
-global_co2 <-  read_csv(here("data" ,"global_co2_2014.csv"))
+global_co2 <-  read_csv(here("data","global_co2_2014.csv"))
 
 # Define server logic required to plot various variables against mpg
 shinyServer <- function(input, output) {
@@ -114,11 +114,11 @@ shinyServer <- function(input, output) {
   
 
 # Total emission in global setting
-  
+     
   total_co2 <- reactive({
     sum(transport_carbon()$"Carbon emission (kg)")/0.33 + sum(diet_emission()$"Carbon emission (kg)", na.rm = TRUE) 
   })
-
+  
   
   output$global_co2 <- renderPlot({
     
@@ -134,6 +134,7 @@ shinyServer <- function(input, output) {
            y = "Global frequency")
     
   })
-  
+
+     
 }
 
