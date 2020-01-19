@@ -18,12 +18,15 @@ shinyUI(
   fluidPage(
     theme = shinytheme("flatly"),
     titlePanel("GREEN FOOTPRINT"),
+    
     navbarPage(
       "Calculate Your Daily Carbon Footprint since today!",
+      tabPanel("Introduction", 
+               "This panel is intentionally left blank"),
+      
       
       tabPanel("Calculator",
-               mainPanel(
-                 tabsetPanel(
+               tabsetPanel(
                    tabPanel("Diet",
                             sidebarPanel(
                               selectInput(inputId = "diet_type1",
@@ -55,6 +58,7 @@ shinyUI(
                               ),
                               numericInput("distance_1", 
                                            label = "Distance 1 (miles)", 
+                                           min = 0,
                                            value = 0
                               ),
                               selectInput("trans_select_2", 
@@ -63,6 +67,7 @@ shinyUI(
                               ),
                               numericInput("distance_2", 
                                            label = "Distance 2 (miles)", 
+                                           min = 0,
                                            value = 0
                               ),
                               selectInput("trans_select_3", 
@@ -71,6 +76,7 @@ shinyUI(
                               ),
                               numericInput("distance_3", 
                                            label = "Distance 3 (miles)", 
+                                           min = 0,
                                            value = 0
                               ),
                               actionButton("action2", "Calculate", class = "btn-primary")
@@ -83,8 +89,9 @@ shinyUI(
                               span(textOutput(outputId = "trans_carbon_total"), style = "font-size:30px")
                             )
                           ),
-                   
+                  
                    tabPanel("Summary", 
+                            
                             mainPanel(
                               p("You emitted this amount of CO2 (kilograms) today, CONGRATS!"),
                               span(textOutput("carbon_total"), style = "font-size:30px"),
@@ -94,10 +101,12 @@ shinyUI(
                               plotOutput(outputId = "global_co2"),
                               h3("How could you contribute?"),
                               textOutput("suggestion")
+                            
+                              )
                             )
-                            )
-                  )
-                )
+               )
+                  
+                
       ),
       
       tabPanel("Data Sources", 
