@@ -1,0 +1,34 @@
+---
+title: "global_carbon"
+author: "Shuhan Song"
+date: "1/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+global_co2 <- read_csv(here("global_per_capita_carbon", "API_EN.ATM.CO2E.PC_DS2_en_csv_v2_713061.csv"), skip = 4) %>% 
+  clean_names()
+
+global_co2_2014 <- global_co2 %>% 
+  select(country_name, x2014) %>% 
+  drop_na() %>% 
+  mutate(daily_2014 = x2014/365*10^6)
+
+ggplot(data = global_co2_2014, aes(x = daily_2014)) +
+  geom_histogram(aes(y=..density..), bins = 50, fill = "white") + 
+  stat_function(fun = dnorm, args = list(mean = mean(global_co2_2014$daily_2014), sd = sd(global_co2_2014$daily_2014))) +
+  theme_minimal()+
+  theme(panel.grid = element_blank()) +
+  
+```
+
