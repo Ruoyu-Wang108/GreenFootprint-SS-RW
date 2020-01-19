@@ -1,0 +1,12 @@
+name: GreenFootprint
+title: GreenFootprint
+username:
+account: ruoyuwang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1675914
+bundleId: 2739550
+url: https://ruoyuwang.shinyapps.io/GreenFootprint/
+when: 1579453429.44379
+asMultiple: FALSE
+asStatic: FALSE
