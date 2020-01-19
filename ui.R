@@ -22,8 +22,13 @@ shinyUI(
     navbarPage(
       "Calculate Your Daily Carbon Footprint since today!",
       tabPanel("Introduction", 
-               "This panel is intentionally left blank"),
-      
+               mainPanel(
+                 h3("What is Green Footprint?"),
+                 textOutput("overall_intro"),
+                 h3("How to use Green Footprint!"),
+                 textOutput("overall_intro_spc")
+                 )
+               ),
       
       tabPanel("Calculator",
                tabsetPanel(
