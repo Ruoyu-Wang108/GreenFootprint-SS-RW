@@ -162,7 +162,7 @@ shinyServer <- function(input, output) {
                Car emission data is computed from the dataset provided by Fuel Ecomony.
                Global distribution of individual CO2 emission is derived from the per capita CO2 emission of 264 countries
                scaled by each country's population in 2014 downloaded from The World Bank. We assume transportation and diet 
-    together account for 33% of each individual's carbon emission based on a personal blog calculate the daily carbon emission."
+    together account for 33% of each individual's daily carbon emission based on a personal blog calculate the daily carbon emission."
     
   })
   
