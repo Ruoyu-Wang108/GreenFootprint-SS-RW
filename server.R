@@ -15,22 +15,12 @@ shinyServer <- function(input, output) {
   
   output$overall_intro <- renderText({
     
-    "Green Footprint is your personal daily carbon (measured in CO2) emission calculator. Under the Calculator section, begin by choosing your diet types for breakfast,
-    lunch, and dinner. Then, enter up to three types of transportation you took and the distance you travelled with them respectively. Finally, you can 
-    see your total CO2 emission from diet and transportation for that day, an estimated position of your emission level in the world, and suggestions to live a greener day. "
+    "Green Footprint is your personal daily carbon dioxide emission (also known as carbon footprint) calculator. Right now, you can sum your total carbon dioxide emission from diet and transportation in one day, estimate your emission position comparing to the world per capita level, and receive tips to live a greener day. "
 
   })
   
   
-  output$overall_intro_spc <- renderText({
-  
-  "You can choose from vegan, vegetarian, chicken, pork, seefood, beef, lamb, or omnivorous average for types of diet. An 'omnivorous average' means 
-  you ate all types of meat for that meal. For transportation, you can choose from walking, biking, taking bus, and driving cars, where cars are divided
-  into three categories: gasoline, hybrid, and electric. For other types of public transportations, you may choose bus. If you want to
-  leave any choices blank, choose '--Choose--' for Diet and 'No transportation' for Transportation."
-  
-    
-  })
+
     
   # Transportation carbon emission
   transport_input <- eventReactive( input$action2,{
@@ -163,17 +153,7 @@ shinyServer <- function(input, output) {
     
   })
   
-  
-  # output$suggestion <- renderText({
-  #   
-  #   "p(1. You can always reduce your carbon emission by choosing a vegan/vegetarian diet or consuming less beef or lamb.),
-  #   p(2. You can walk, bike or taking public transit to work or school. ),
-  #   p(3. If you need a car, you can save two thirds of your CO2 emission by choosing a hybrid over a regular gasoline car. ),
-  #   p(4. An electric car can further reduce your emission by half.),
-  #   "
-  #   
-  # })
-  
+
   
   # Data Source
   
@@ -181,7 +161,7 @@ shinyServer <- function(input, output) {
     
     "Diet data is derived from research done by Shrink That Footprint.
                Car emission data is computed from the dataset provided by Fuel Ecomony.
-               Global distribution of individual CO2 emission is derived from the per capita CO2 emission of 264 countries
+               Global distribution of individual carbon dioxide emission is derived from the per capita carbon dioxide emission of 264 countries
                scaled by each country's population in 2014 downloaded from The World Bank. We assume transportation and diet 
     together account for 33% of each individual's daily carbon emission based on a personal blog calculate the daily carbon emission."
     
@@ -205,7 +185,7 @@ shinyServer <- function(input, output) {
     transport_gram_per_mile %>% 
       filter(trans_type != "No transportation") %>% 
       rename("Transportation types" = trans_type) %>% 
-      mutate("CO2 emissions (kg/mile)" = carbon_burden/1000) %>% 
+      mutate("carbon dioxide emissions (kg/mile)" = carbon_burden/1000) %>% 
       select(-carbon_burden) 
       
   })
@@ -229,7 +209,7 @@ shinyServer <- function(input, output) {
   
   
   output$worldbank_link <- renderText({
-    "www.data.worldbank.org/indicator/en.atm.CO2e.pc"
+    "www.data.worldbank.org/indicator/en.atm.carbon dioxidee.pc"
   })
   
   output$worldbank_pop_link <- renderText({

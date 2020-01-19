@@ -14,7 +14,9 @@ shinyUI(
                  h3("What is Green Footprint?"),
                  textOutput("overall_intro"),
                  h3("How to use Green Footprint?"),
-                 textOutput("overall_intro_spc")
+                 p("Under the Calculator section, begin by choosing your diet types for breakfast, lunch, and dinner. You can select from vegan, vegetarian, chicken, pork, seefood, beef, lamb, or omnivorous average for types of diet. An 'omnivorous average' means you ate mutiple types of meat for that meal. "),
+                 
+                 p("Then, enter up to three types of transportation you took and the distance you travelled with them respectively. For transportation, you can choose from walking, biking, taking bus, and driving cars, where cars are divided into three categories: gasoline, hybrid, and electric. For other types of public transportations, you may choose bus. If you want to leave any opinions blank, select '--Choose--' for Diet and 'No transportation' for Transportation. ")
                  ) 
                ),
       
@@ -86,16 +88,16 @@ shinyUI(
                    tabPanel("Summary and Next Steps", 
                             
                             mainPanel(
-                              p("You emitted this amount of CO2 (kilograms) today, WHOA!"),
+                              h4("You emitted this amount of carbon dioxide (kilograms) today, WHOA!"),
                               span(textOutput("carbon_total"), style = "font-size:30px"),
                               h4("YOUR Diet vs. Transportation:"),
                               plotOutput("diet_trans"),
-                              h4("Your today's carbon emission in GLOBAL scale:"),
+                              h4("Your carbon emission today (green line) in GLOBAL scale:"),
                               plotOutput(outputId = "global_co2"),
                               h4("Great job! But you can reduce more through the next steps:"),
                               p("1. You can always reduce your carbon emission by choosing a vegan/vegetarian diet or consuming less beef or lamb."),
                               p("2. You can walk, bike or taking public transit to work or school. "),
-                              p("3. If you need a car, you can save two thirds of your CO2 emission by choosing a hybrid over a regular gasoline car. "),
+                              p("3. If you need a car, you can save two thirds of your carbon dioxide emission by choosing a hybrid over a regular gasoline car. "),
                               p("4. An electric car can further reduce your emission by half."),
                               p("If you are already optimizing your carbon emissions, CHEERS! You ARE the winner and leader!"),
                               p("For more detailed information, please refer to the Data Sources section!")
@@ -107,9 +109,9 @@ shinyUI(
       tabPanel("Data Sources", 
                mainPanel(
                  textOutput("source_intro"),
-                 h3("CO2 emission data for different types of diet"),
+                 h3("Carbon dioxide emission data for different types of diet"),
                  tableOutput("diet_original_data"),
-                 h3("CO2 emission data for different types of transportation"),
+                 h3("Carbon dioxide emission data for different types of transportation"),
                  tableOutput("transport_original_data"),
                  h4("Source links:"),
                  textOutput("diet_link"),
